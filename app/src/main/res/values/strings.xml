@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ShareYourDay</string>
+    <string name="action_settings">Settings</string>
+    
+    <string-array name="colorthemes">
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
+</resources>
