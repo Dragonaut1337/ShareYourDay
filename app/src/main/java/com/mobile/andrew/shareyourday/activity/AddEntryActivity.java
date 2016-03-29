@@ -44,6 +44,8 @@ public class AddEntryActivity extends AppCompatActivity {
                 String description = descriptionInput.getText().toString();
                 String date = dateInput.getText().toString();
 
+                //If date is an invalid value, the current date will be saved
+
                 if (DateConverter.convertStringToDate(date) == null) {
                     date = DateConverter.convertDateToString(new Date());
                 }

@@ -51,8 +51,11 @@ public class EntryContainerFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Override this method in the activity that hosts the Fragment and call super
-        // in order to receive the result inside onActivityResult from the fragment.
+
+        //The EntryContainerFragment class is the parentfragment of both EntryListFragment
+        //and EntryDetailFragment. So if you want to use onActivityResult in the childrenfragments,
+        //you need to call the method in the parentfragment!
+        
         super.onActivityResult(requestCode, resultCode, data);
         List<Fragment> list = getChildFragmentManager().getFragments();
 

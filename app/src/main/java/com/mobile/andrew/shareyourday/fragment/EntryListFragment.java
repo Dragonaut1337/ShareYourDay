@@ -121,16 +121,10 @@ public class EntryListFragment extends ListFragment {
             dataSource.deleteEntry(entry);
             updateEntryListView();
 
-            List<Fragment> list = getParentFragment().getChildFragmentManager().getFragments();
+            //Resets the EntryDetailFragment
+            EntryDetailFragment detailFragment = EntryDetailFragment.newInstance(null);
+            getFragmentManager().beginTransaction().replace(R.id.entry_detail, detailFragment).commit();
 
-            for (int i = 0; i < list.size(); i++) {
-
-                if (list.get(i).getClass() == EntryDetailFragment.class) {
-
-                    EntryDetailFragment fragment = (EntryDetailFragment) list.get(i);
-                    fragment.clearEntryDetailFragment();
-                }
-            }
         } else {
             return false;
         }

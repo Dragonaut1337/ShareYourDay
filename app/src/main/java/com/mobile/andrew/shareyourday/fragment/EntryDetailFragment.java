@@ -47,11 +47,13 @@ public class EntryDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            entry = (Entry) getArguments().getSerializable(ENTRY);
-            title = entry.getEntryTitle();
-            imageResource = entry.getImageResource();
-            description = entry.getDescription();
-            date = entry.getDate();
+            if((Entry) getArguments().getSerializable(ENTRY) != null){
+                entry = (Entry) getArguments().getSerializable(ENTRY);
+                title = entry.getEntryTitle();
+                imageResource = entry.getImageResource();
+                description = entry.getDescription();
+                date = entry.getDate();
+            }
         }
     }
 
@@ -116,19 +118,10 @@ public class EntryDetailFragment extends Fragment {
         return fragment;
     }
 
-    public void clearEntryDetailFragment(){
-            titleTextView.setText("");
-            imageView.setVisibility(View.INVISIBLE);
-            descriptionTextView.setText("");
-            dateTextView.setText("");
-            editEntryButton.setVisibility(View.INVISIBLE);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == IntentValues.EDIT_ENTRY_INTENT) {
-            //TODO requestCode for EDIT_ENTRY_INTENT
             if (resultCode == Activity.RESULT_OK) {
 
                 Bundle bundle = data.getExtras();
