@@ -14,7 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "myhomeworktutorial.db";
     private static final int DATABASE_VERSION = 2;
 
-    // Assignments
+    // Entries
     public static final String TABLE_ENTRIES = "entries";
     public static final String COLUMN_ENTRY_ID = "entry_id";
     public static final String COLUMN_TITLE = "title";

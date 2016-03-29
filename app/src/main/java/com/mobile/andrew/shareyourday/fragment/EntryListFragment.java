@@ -3,6 +3,7 @@ package com.mobile.andrew.shareyourday.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.mobile.andrew.shareyourday.activity.AddEntryActivity;
 import com.mobile.andrew.shareyourday.adapter.EntryArrayAdapter;
 import com.mobile.andrew.shareyourday.model.Entry;
 import com.mobile.andrew.shareyourday.utility.DataSource;
+import com.mobile.andrew.shareyourday.utility.IntentValues;
 
 import java.util.List;
 
@@ -27,8 +29,6 @@ import java.util.List;
  */
 public class EntryListFragment extends ListFragment {
 
-
-    public static final int ADD_ENTRY_INTENT = 1;
     private List<Entry> entryList;
     private Button addEntryButton;
     private DataSource dataSource;
@@ -69,7 +69,7 @@ public class EntryListFragment extends ListFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddEntryActivity.class);
-                getParentFragment().startActivityForResult(intent, ADD_ENTRY_INTENT);
+                getParentFragment().startActivityForResult(intent, IntentValues.ADD_ENTRY_INTENT);
             }
         });
 
@@ -79,7 +79,7 @@ public class EntryListFragment extends ListFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == ADD_ENTRY_INTENT) {
+        if (requestCode == IntentValues.ADD_ENTRY_INTENT) {
             if (resultCode == Activity.RESULT_OK) {
 
                 long entryId = data.getLongExtra(Entry.ID, -1);
@@ -90,10 +90,16 @@ public class EntryListFragment extends ListFragment {
                 }
             }
         }
+
+        if (requestCode == IntentValues.EDIT_ENTRY_INTENT) {
+            if (resultCode == Activity.RESULT_OK) {
+                updateEntryListView();
+            }
+        }
     }
 
     public void updateEntryListView() {
-        List<Entry> entries = dataSource.getAllEntriesFromDatabase();
+        entryList = dataSource.getAllEntriesFromDatabase();
         adapter = new EntryArrayAdapter(getContext(), R.layout.entry_listitem, entryList);
         setListAdapter(adapter);
     }
@@ -114,6 +120,17 @@ public class EntryListFragment extends ListFragment {
             adapter.remove(entry);
             dataSource.deleteEntry(entry);
             updateEntryListView();
+
+            List<Fragment> list = getParentFragment().getChildFragmentManager().getFragments();
+
+            for (int i = 0; i < list.size(); i++) {
+
+                if (list.get(i).getClass() == EntryDetailFragment.class) {
+
+                    EntryDetailFragment fragment = (EntryDetailFragment) list.get(i);
+                    fragment.clearEntryDetailFragment();
+                }
+            }
         } else {
             return false;
         }

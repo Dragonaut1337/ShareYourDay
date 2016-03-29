@@ -14,6 +14,7 @@ import com.mobile.andrew.shareyourday.R;
 import com.mobile.andrew.shareyourday.activity.AddEntryActivity;
 import com.mobile.andrew.shareyourday.activity.SettingsActivity;
 import com.mobile.andrew.shareyourday.model.Entry;
+import com.mobile.andrew.shareyourday.utility.IntentValues;
 
 /**
  * Created by andre on 07/03/2016.
@@ -21,7 +22,6 @@ import com.mobile.andrew.shareyourday.model.Entry;
 public class SettingsFragment extends Fragment {
 
     public static final String COLOR_SELECTION = "colorselection";
-    public static final int EDIT_SETTINGS_INTENT = 1;
     private int pageNumber;
     Button editSettingsButton;
     TextView selectionTextView;
@@ -55,7 +55,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SettingsActivity.class);
-                startActivityForResult(intent, EDIT_SETTINGS_INTENT);
+                startActivityForResult(intent, IntentValues.EDIT_SETTINGS_INTENT);
             }
         });
 
@@ -65,7 +65,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == EDIT_SETTINGS_INTENT) {
+        if (requestCode == IntentValues.EDIT_SETTINGS_INTENT) {
             if (resultCode == Activity.RESULT_OK) {
 
                 String selection = data.getStringExtra(COLOR_SELECTION);

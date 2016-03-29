@@ -67,13 +67,13 @@ public class EntryArrayAdapter extends ArrayAdapter<Entry>{
         public void populateRow(Entry entry){
             title.setText(entry.getEntryTitle());
             image.setImageResource(entry.getImageResource());
-
-            if(entry.getDate() != null){
-                dateTextView.setText(DateConverter.convertDateToString(entry.getDate()));
-            }
-            else{
-                dateTextView.setText(DateConverter.convertDateToString(new Date()));
-            }
+//TODO delete
+//            if(entry.getDate() != null){
+//                dateTextView.setText(DateConverter.convertDateToString(entry.getDate()));
+//            }
+//            else{
+//                dateTextView.setText(DateConverter.convertDateToString(new Date())); //TODO sollte nicht hier sein!
+//            }
 
 
         }

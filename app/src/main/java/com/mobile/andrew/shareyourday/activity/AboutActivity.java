@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import com.mobile.andrew.shareyourday.R;
 
+//Placeholder for AboutActivity
+
 public class AboutActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

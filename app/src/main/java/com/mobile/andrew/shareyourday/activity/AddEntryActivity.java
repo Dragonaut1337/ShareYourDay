@@ -18,6 +18,10 @@ import java.util.Date;
 public class AddEntryActivity extends AppCompatActivity {
 
     private DataSource dataSource;
+    private EditText titleInput;
+    private EditText descriptionInput;
+    private EditText dateInput;
+    private Button addButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +30,10 @@ public class AddEntryActivity extends AppCompatActivity {
 
         dataSource = new DataSource(this);
 
-        final EditText titleInput = (EditText) findViewById(R.id.add_input_title);
-        final EditText descriptionInput = (EditText) findViewById(R.id.add_input_description);
-        final EditText dateInput = (EditText) findViewById(R.id.add_input_date);
-        Button addButton = (Button) findViewById(R.id.add_button_save);
+        titleInput = (EditText) findViewById(R.id.add_input_title);
+        descriptionInput = (EditText) findViewById(R.id.add_input_description);
+        dateInput = (EditText) findViewById(R.id.add_input_date);
+        addButton = (Button) findViewById(R.id.add_button_save);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +43,10 @@ public class AddEntryActivity extends AppCompatActivity {
                 int imageResource = R.drawable.princess_flower; //Default value!
                 String description = descriptionInput.getText().toString();
                 String date = dateInput.getText().toString();
+
+                if (DateConverter.convertStringToDate(date) == null) {
+                    date = DateConverter.convertDateToString(new Date());
+                }
 
                 long entryId = dataSource.createEntry(title, imageResource, description, date);
                 Intent resultIntent = new Intent();

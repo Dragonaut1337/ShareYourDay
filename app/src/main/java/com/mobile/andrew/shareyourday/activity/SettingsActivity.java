@@ -16,8 +16,8 @@ import com.mobile.andrew.shareyourday.fragment.SettingsFragment;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    Spinner colorSpinner;
-    Button saveButton;
+    private Spinner colorSpinner;
+    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveButton = (Button) findViewById(R.id.settings_save_button);
         ArrayAdapter statusAdapter = ArrayAdapter.createFromResource(this,
                 R.array.colorthemes, android.R.layout.simple_spinner_item);
+
         // Specify the layout to use when the list of choices appears
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

@@ -62,6 +62,12 @@ public class EntryContainerFragment extends Fragment {
                 Fragment fragment = list.get(i);
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
+
+            if (list.get(i).getClass() == EntryDetailFragment.class) {
+
+                Fragment fragment = list.get(i);
+                fragment.onActivityResult(requestCode, resultCode, data);
+            }
         }
     }
 }

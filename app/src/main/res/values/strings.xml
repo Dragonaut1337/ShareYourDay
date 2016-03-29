@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">ShareYourDay</string>
     <string name="action_settings">Settings</string>
-    
+    <string name="edit_entry">Edit Entry</string>
+
     <string-array name="colorthemes">
         <item>Red</item>
         <item>Blue</item>
         <item>Green</item>
     </string-array>
+    <string name="title_activity_edit_entry">EditEntryActivity</string>
 </resources>
